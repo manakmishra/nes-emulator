@@ -10,7 +10,7 @@ private:
 	bool C, Z, I, D, B, V, N;
 public:
 	uint8_t getFlags();
-	uint8_t setFlags(uint8_t flags);
+	void setFlags(uint8_t flags);
 };
 
 #endif // !CPU_H_INCLUDED

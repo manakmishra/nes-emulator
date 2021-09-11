@@ -13,7 +13,7 @@ uint8_t CPU::getFlags() {
 	return flags;
 }
 
-uint8_t CPU::setFlags(uint8_t flags) {
+void CPU::setFlags(uint8_t flags) {
 	C = (flags >> 0) & 1;
 	Z = (flags >> 1) & 1;
 	I = (flags >> 2) & 1;
