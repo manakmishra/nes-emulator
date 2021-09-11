@@ -27,12 +27,18 @@
     <ClCompile Include="src\Core\iNES\iNES.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\CPU\CPU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\iNES\iNES.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Cartridge\Cartridge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\CPU\CPU.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
