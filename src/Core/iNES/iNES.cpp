@@ -42,20 +42,18 @@ struct Cartridge* iNES::loadNESFile(const std::string& path) {
 		//battery-backed RAM
 		bool battery = (header.Control1 & 2) == 2;
 
-		/*if (header.Control1 & 4 == 4) {
-			uint8_t trainer[512] = { 0 };
+		if ((header.Control1 & 4) == 4) {
+			std::vector<uint8_t> trainer(512);
+			in.read((char*)&trainer[0], 512);
+		}
 
-		}*/
+		uint8_t* prg = new uint8_t[int(header.NumPRG) * 16384];
+		in.read((char*)&prg[0], int(header.NumPRG) * 16384);
 
-		int size = int(header.NumPRG) * 16384;
-		std::vector<uint8_t> prg(size);
-		in.read((char*)&prg[0], size);
+		uint8_t* chr = new uint8_t[int(header.NumCHR) * 8192];
+		in.read((char*)&chr[0], int(header.NumCHR) * 8192);
 
-		size = int(header.NumCHR) * 8192;
-		std::vector<uint8_t> chr(size);
-		in.read((char*)&chr[0], size);
-
-		Cartridge cartridge(prg.data(), chr.data(), mapper, mirror, battery);
+		Cartridge cartridge(prg, chr, mapper, mirror, battery);
 		in.close();
 
 		return &cartridge;

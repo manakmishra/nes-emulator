@@ -7,15 +7,12 @@ const int MirrorHorizontal = 0;
 const int MirrorVertical = 1;
 const int MirrorQuad = 2;
 
-struct Cartridge {
-	Cartridge(uint8_t* prg, uint8_t* chr, int mp, int mr, bool b) {
-		PRG = prg;
-		CHR = chr;
-		Mapper = mp;
-		Mirror = mr;
-		Battery = b;
-	}
+class Cartridge{
+public:
+	Cartridge(uint8_t* prg, uint8_t* chr, int mp, int mr, bool b);
+	uint8_t Read(uint16_t address);
 
+private:
 	uint8_t* PRG;
 	uint8_t* CHR;
 	int Mapper;

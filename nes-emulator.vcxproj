@@ -139,14 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Cartridge\Cartridge.cpp" />
     <ClCompile Include="src\Core\CPU\CPU.cpp" />
     <ClCompile Include="src\Core\iNES\iNES.cpp" />
+    <ClCompile Include="src\Core\Memory\Memory.cpp" />
+    <ClCompile Include="src\Core\NES.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Cartridge\Cartridge.h" />
     <ClInclude Include="src\Core\CPU\CPU.h" />
     <ClInclude Include="src\Core\iNES\iNES.h" />
+    <ClInclude Include="src\Core\Memory\Memory.h" />
+    <ClInclude Include="src\Core\NES.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

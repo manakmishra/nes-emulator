@@ -1,6 +1,6 @@
 #include "CPU.h"
 
-uint8_t CPU::getFlags() {
+uint8_t CPU::Flags() {
 	uint8_t flags = 0x00;
 	flags |= C << 0;
 	flags |= Z << 1;
