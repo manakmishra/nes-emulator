@@ -3,11 +3,11 @@
 
 #include <string>
 
+class Cartridge;
+
 class iNES {
-private:
-	struct Header;
 public:
-	struct Cartridge* loadNESFile(const std::string& path);
+	Cartridge* loadNESFile(const std::string& path);
 };
 
 #endif // !INES_H_INCLUDED

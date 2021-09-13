@@ -1,10 +1,13 @@
 #ifndef MEMORY_H_INCLUDED
 #define MEMORY_H_INCLUDED
 
-#include "../NES.h"
+#include <cstdint>
+
+class NES;
 
 class Memory {
 public:
+	Memory() = default;
 	Memory(NES* nesObj);
 
 	uint8_t Read(uint16_t address);

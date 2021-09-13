@@ -1,16 +1,10 @@
-#include "Core/iNES/iNES.h"
-#include "Core/Cartridge/Cartridge.h"
+#include "Core/NES.h"
 #include <iostream>
 
 int main() {
-	iNES ines = iNES();
-	Cartridge* cartridge = ines.loadNESFile("roms/nestest.nes");
-
-	/*std::cout << "PRG: " << cartridge->PRG << "\n";
-	std::cout << "CHR: " << cartridge->CHR << "\n";
-	std::cout << "Mapper: " << cartridge->Mapper << "\n";
-	std::cout << "Mirror: " << cartridge->Mirror << "\n";
-	std::cout << "Battery: " << cartridge->Battery << "\n";*/
-
+	NES nes = NES("roms/nestest.nes");
+	for (int i = 0; i < 10; i++) {
+		nes.cpu->Step();
+	}
 	return 0;
 }

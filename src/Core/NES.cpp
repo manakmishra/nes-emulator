@@ -1,8 +1,9 @@
 #include "NES.h"
+#include "Memory/Memory.h"
+#include "iNES/iNES.h"
 
 NES::NES(const std::string& path) {
-	iNES ines = iNES();
-	cartridge = ines.loadNESFile("roms/nestest.nes");
-
-
+	cartridge = iNES().loadNESFile(path);
+	CPU newCPU = CPU(Memory(this));
+	cpu = &newCPU;
 }

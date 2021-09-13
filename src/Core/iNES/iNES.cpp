@@ -7,9 +7,9 @@
 
 const int iNESMagic = 0x1a53454e;
 
-struct iNES::Header{
+struct Header {
 	uint32_t Magic;
-	uint8_t NumPRG; 
+	uint8_t NumPRG;
 	uint8_t NumCHR;
 	uint8_t Control1;
 	uint8_t Control2;
@@ -17,7 +17,7 @@ struct iNES::Header{
 	uint8_t _res[7];
 };
 
-struct Cartridge* iNES::loadNESFile(const std::string& path) {
+Cartridge* iNES::loadNESFile(const std::string& path) {
 	std::fstream in(path.c_str(), std::ios::binary | std::ios::in);
 	struct Header header;
 
@@ -37,7 +37,7 @@ struct Cartridge* iNES::loadNESFile(const std::string& path) {
 		//mirror type
 		int mirror1 = int(header.Control1) & 1;
 		int mirror2 = int(header.Control1 >> 3) & 1;
-		int mirror = mapper1 | mapper2 << 1;
+		int mirror = mirror1 | mirror2 << 1;
 
 		//battery-backed RAM
 		bool battery = (header.Control1 & 2) == 2;
@@ -47,11 +47,13 @@ struct Cartridge* iNES::loadNESFile(const std::string& path) {
 			in.read((char*)&trainer[0], 512);
 		}
 
-		uint8_t* prg = new uint8_t[int(header.NumPRG) * 16384];
-		in.read((char*)&prg[0], int(header.NumPRG) * 16384);
+		int size = int(header.NumPRG) * 16384;
+		std::vector<uint8_t> prg(size);
+		in.read((char*)&prg[0], size);
 
-		uint8_t* chr = new uint8_t[int(header.NumCHR) * 8192];
-		in.read((char*)&chr[0], int(header.NumCHR) * 8192);
+		size = int(header.NumCHR) * 8192;
+		std::vector<uint8_t> chr(size);
+		in.read((char*)&chr[0], size);
 
 		Cartridge cartridge(prg, chr, mapper, mirror, battery);
 		in.close();

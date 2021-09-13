@@ -1,4 +1,5 @@
 #include "Memory.h"
+#include "../NES.h"
 
 Memory::Memory(NES* nesObj) {
 	RAM = new uint8_t[2048];
@@ -6,13 +7,16 @@ Memory::Memory(NES* nesObj) {
 }
 
 uint8_t Memory::Read(uint16_t address) {
+	std::cout << address << "\n";
+
 	if (address < 0x2000) {
 		return RAM[address % 0x8000];
 	}
 	else if (address >= 0x8000) {
 		return nes->cartridge->Read(address);
 	}
-	else return 0;
+	
+	return 0;
 }
 
 uint16_t Memory::Read16(uint16_t address) {
